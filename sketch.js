@@ -1,22 +1,53 @@
-//suits
-//lucifer
-//cobra kai
-//stranger things
-//psych
-//Big Bang: A Teoria
-//la casa de papel
-//Ted Lasso
-//The Boys
-//Breaking Bad
-//The Last of Us
-//Game of Thrones
-
-
+let campoIdade;
+let campoFantasia;
+let campoAventura;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(900, 450);
+  createElement("h2", "Recomendador de series");
+  createSpan("Sua idade:");
+  campoIdade = createInput("5");
+  campoFantasia = createCheckbox("Gosta de fantasia?");
+  campoAventura = createCheckbox("Gosta de aventura?");
 }
 
 function draw() {
-  background(220);
+  background("#401886");
+  let idade = campoIdade.value();
+  let gostaDeFantasia = campoFantasia.checked();
+  let gostaDeAventura = campoAventura.checked();
+  let recomendacao = geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura);
+
+  fill(color(76, 456, 115));
+  textAlign(CENTER, CENTER);
+  textSize(38);
+  text(recomendacao, width / 2, height / 2);
+}
+
+function geraRecomendacao(idade, gostaDeFantasia, gostaDeAventura) {
+  if (idade >= 10) {
+    if (idade >= 14) {
+      return "Deadpool e Wolverine";
+    } else {
+      if (idade >= 12) {
+        if(gostaDeFantasia || gostaDeAventura) {
+          return "Venom: Tempo de carneficina ";          
+        } else{
+         return "O menino do pijama listrado";
+        }
+      } else {
+        if (gostaDeFantasia) {
+          return "Velozes e furiosos";
+        } else {
+          return "Planeta dos macacos";
+        }
+      }
+    }
+  } else {
+    if (gostaDeFantasia) {
+      return "Homem aranha";
+    } else {
+      return "Titanic";
+    }
+  }
 }
